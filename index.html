@@ -20,6 +20,7 @@
         }
         .envelope-container {
             cursor: pointer;
+            transition: opacity 1s ease-out; /* Fade effect */
         }
         .envelope {
             width: 150px;
@@ -106,18 +107,29 @@
         </div>
 
         <div class="letter">
-            <p>Hi Babi, Happy Happy 3rd Monthsary of Love! Time flies so fast, right? It feels like just yesterday. 🤭</p>
-            <p>I honestly don’t know how to start this letter, but here it goes...</p>
-            <p>Babi, I know we still have a lot to go through and experience together, but we must always stay strong...</p>
-            <p>So here’s to you, my love—my spouse, my darling, my lady, my one and only favorite person, and lastly, my Shiro. Happy, happy 3rd Monthsary of Love! 💖😚</p>
+           <p>Hi Babi, Happy Happy 3rd Monthsary of Love! Time flies so fast, right? It feels like just yesterday. 🤭</p>
+        <p>I honestly don’t know how to start this letter, but here it goes. Always remember that I love you so much. I am beyond thankful that you came into my life. I don’t even know how to express my gratitude for everything you have done for me. I am truly happy—so happy that words cannot explain how joyful I feel whenever I am with you. I must be the luckiest person alive since the day you arrived in my life. 🥰🤭</p>
+        <p>Babi, I know we still have a lot to go through and experience together, but we must always stay strong. Did you hear what Ate said earlier about whether you'd be okay with us living here in the future? They know how sure I am about you, and that you are the one I want to spend my life with. Hihihi. I love you so much, more than words can say.</p>
+        <p>Always take care of yourself, no matter where you go or what you do. I will always be here, supporting you in everything. I will love you endlessly, only you, until my last breath. I won’t even mention all our past moments together because I am more focused on our future—the many more monthsaries and anniversaries ahead.</p>
+        <p>So here’s to you, my love—my spouse, my darling, my lady, my one and only favorite person, and lastly, my Shiro. Happy, happy 3rd Monthsary of Love! 💖😚</p>
         </div>
     </div>
 
     <script>
         function openLetter() {
+            // Open the letter and play music
             document.getElementById('messageBox').style.display = 'block';
             document.querySelector('.flap').style.transform = 'rotateX(180deg)';
             document.getElementById('bgMusic').play();
+
+            // Fade out the envelope after it is clicked
+            const envelopeContainer = document.querySelector('.envelope-container');
+            envelopeContainer.style.opacity = '0';  // Start fading the envelope
+
+            // After the fade-out animation completes (1s), hide the envelope
+            setTimeout(() => {
+                envelopeContainer.style.display = 'none';  // Hide it
+            }, 1000);  // Match the fade-out duration (1 second)
         }
 
         let images = document.querySelectorAll('.slideshow img');

@@ -3,28 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Monthsary, My Love! ❤️</title>
+    <title>Happy Monthsary!</title>
     <style>
         body {
             text-align: center;
-            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
-            font-family: 'Arial', sans-serif;
-            color: #fff;
+            background-color: #ffdde1;
+            font-family: Arial, sans-serif;
+            color: #ff4081;
+            overflow-x: hidden;
             margin: 0;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
             position: relative;
         }
+        h1 {
+            margin-top: 50px;
+            font-size: 2.5em;
+        }
+        .message, .letter {
+            font-size: 1.2em;
+            padding: 20px;
+            border-radius: 10px;
+            background: white;
+            display: inline-block;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            max-width: 90%;
+            text-align: left;
+        }
+        .slideshow {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 300px;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .slideshow img {
+            width: 100%;
+            height: 100%;
+            display: none;
+            border-radius: 10px;
+            object-fit: cover;
+        }
         .envelope-container {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
         }
         .envelope {
             width: 150px;
@@ -45,73 +71,38 @@
             clip-path: polygon(0 0, 100% 0, 50% 100%);
             transition: transform 0.5s ease-in-out;
         }
-        .message-box {
-            display: none;
-            width: 90%;
-            max-width: 400px;
-            background: white;
-            color: #333;
-            text-align: center;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            position: relative;
-            z-index: 10;
-        }
         .show-message .flap {
             transform: rotateX(180deg);
         }
         .show-message .envelope-container {
             display: none;
         }
-        .slideshow {
-            margin-top: 20px;
-            width: 300px;
-            height: 200px;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            position: relative;
-            z-index: 5;
-        }
-        .slideshow img {
-            width: 100%;
-            height: 100%;
-            display: none;
-            border-radius: 10px;
-        }
         @keyframes hearts {
-            from { transform: translateY(0); }
-            to { transform: translateY(-100vh); }
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(-100vh); opacity: 0; }
         }
         .heart {
-            position: absolute;
+            position: fixed;
             bottom: 0;
+            left: calc(10% + 80% * var(--pos));
             width: 20px;
             height: 20px;
             background: red;
             clip-path: polygon(50% 0%, 100% 40%, 80% 100%, 50% 80%, 20% 100%, 0% 40%);
             animation: hearts 5s linear infinite;
-            z-index: 15;
+            opacity: 0.7;
+            z-index: 10;
         }
-        .music-controls {
-            margin-top: 20px;
-            z-index: 20;
-            position: relative;
+        audio {
+            display: none;
         }
     </style>
 </head>
 <body>
-
-    <audio id="bgMusic" loop>
+    <audio autoplay loop>
         <source src="your-music-file.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-    
-    <div class="music-controls">
-        <button onclick="document.getElementById('bgMusic').play()">▶ Play Music</button>
-        <button onclick="document.getElementById('bgMusic').pause()">⏸ Pause</button>
-    </div>
 
     <div class="envelope-container" id="envelopeContainer">
         <div class="envelope" onclick="openLetter()">
@@ -119,11 +110,11 @@
         </div>
         <p>Click the envelope to open your surprise! 💌</p>
     </div>
-    
-    <div class="message-box" id="messageBox">
+
+    <div class="message-box" id="messageBox" style="display:none;">
         <h1>Happy Monthsary, My Love! ❤️</h1>
         <div class="message">You make every day special. I love you forever! 💖</div>
-                   <img src="photo5.jpg" alt="Memorable Moment" class="active">
+                    <img src="photo5.jpg" alt="Memorable Moment" class="active">
             <img src="photo6.jpg" alt="Memorable Moment">
             <img src="photo7.jpg" alt="Memorable Moment">
             <img src="photo8.jpg" alt="Memorable Moment">
@@ -139,6 +130,7 @@
         <p>Babi, I know we still have a lot to go through and experience together, but we must always stay strong. Did you hear what Ate said earlier about whether you'd be okay with us living here in the future? They know how sure I am about you, and that you are the one I want to spend my life with. Hihihi. I love you so much, more than words can say.</p>
         <p>Always take care of yourself, no matter where you go or what you do. I will always be here, supporting you in everything. I will love you endlessly, only you, until my last breath. I won’t even mention all our past moments together because I am more focused on our future—the many more monthsaries and anniversaries ahead.</p>
         <p>So here’s to you, my love—my spouse, my darling, my lady, my one and only favorite person, and lastly, my Shiro. Happy, happy 3rd Monthsary of Love! 💖😚</p>
+        </div>
     </div>
 
     <script>
@@ -146,7 +138,7 @@
             document.body.classList.add('show-message');
             document.getElementById('messageBox').style.display = 'block';
         }
-        
+
         let images = document.querySelectorAll('.slideshow img');
         let index = 0;
         function showNextImage() {
@@ -156,17 +148,16 @@
         }
         setInterval(showNextImage, 3000);
         showNextImage();
-        
+
         function createHeart() {
             let heart = document.createElement('div');
             heart.classList.add('heart');
-            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.setProperty('--pos', Math.random());
             heart.style.animationDuration = Math.random() * 2 + 3 + 's';
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), 5000);
         }
         setInterval(createHeart, 300);
     </script>
-
 </body>
 </html>

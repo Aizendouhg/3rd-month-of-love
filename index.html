@@ -13,10 +13,49 @@
             overflow-x: hidden;
             margin: 0;
             position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
         }
-        h1 {
+        .envelope-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 20;
+        }
+        .envelope {
+            width: 150px;
+            height: 100px;
+            background: #d9534f;
+            position: relative;
+            cursor: pointer;
+            border-radius: 10px 10px 5px 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: #c9302c;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            transition: transform 0.5s ease-in-out;
+        }
+        .show-message .flap {
+            transform: rotateX(180deg);
+        }
+        .show-message .envelope-container {
+            display: none;
+        }
+        .message-box {
+            display: none;
+            text-align: center;
             margin-top: 50px;
-            font-size: 2.5em;
         }
         .message, .letter {
             font-size: 1.2em;
@@ -44,38 +83,6 @@
             display: none;
             border-radius: 10px;
             object-fit: cover;
-        }
-        .envelope-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-        .envelope {
-            width: 150px;
-            height: 100px;
-            background: #d9534f;
-            position: relative;
-            cursor: pointer;
-            border-radius: 10px 10px 5px 5px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        .flap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 50px;
-            background: #c9302c;
-            clip-path: polygon(0 0, 100% 0, 50% 100%);
-            transition: transform 0.5s ease-in-out;
-        }
-        .show-message .flap {
-            transform: rotateX(180deg);
-        }
-        .show-message .envelope-container {
-            display: none;
         }
         @keyframes hearts {
             from { transform: translateY(0); opacity: 1; }
@@ -111,12 +118,11 @@
         <p>Click the envelope to open your surprise! 💌</p>
     </div>
 
-    <div class="message-box" id="messageBox" style="display:none;">
+    <div class="message-box" id="messageBox">
         <h1>Happy Monthsary, My Love! ❤️</h1>
         <div class="message">You make every day special. I love you forever! 💖</div>
-       <div class="slideshow">
-           
-            <img src="photo5.jpg" alt="Memorable Moment" class="active">
+        <div class="slideshow">
+                      <img src="photo5.jpg" alt="Memorable Moment" class="active">
             <img src="photo6.jpg" alt="Memorable Moment">
             <img src="photo7.jpg" alt="Memorable Moment">
             <img src="photo8.jpg" alt="Memorable Moment">
@@ -125,14 +131,13 @@
             <img src="photo11.jpg" alt="Memorable Moment">
             <img src="photo12.jpg" alt="Memorable Moment">
         </div>
-        
+
         <div class="letter">
            <p>Hi Babi, Happy Happy 3rd Monthsary of Love! Time flies so fast, right? It feels like just yesterday. 🤭</p>
         <p>I honestly don’t know how to start this letter, but here it goes. Always remember that I love you so much. I am beyond thankful that you came into my life. I don’t even know how to express my gratitude for everything you have done for me. I am truly happy—so happy that words cannot explain how joyful I feel whenever I am with you. I must be the luckiest person alive since the day you arrived in my life. 🥰🤭</p>
         <p>Babi, I know we still have a lot to go through and experience together, but we must always stay strong. Did you hear what Ate said earlier about whether you'd be okay with us living here in the future? They know how sure I am about you, and that you are the one I want to spend my life with. Hihihi. I love you so much, more than words can say.</p>
         <p>Always take care of yourself, no matter where you go or what you do. I will always be here, supporting you in everything. I will love you endlessly, only you, until my last breath. I won’t even mention all our past moments together because I am more focused on our future—the many more monthsaries and anniversaries ahead.</p>
         <p>So here’s to you, my love—my spouse, my darling, my lady, my one and only favorite person, and lastly, my Shiro. Happy, happy 3rd Monthsary of Love! 💖😚</p>
-    </div>
         </div>
     </div>
 

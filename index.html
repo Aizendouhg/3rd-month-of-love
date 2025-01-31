@@ -3,52 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Monthsary! ❤️</title>
+    <title>Happy Monthsary!</title>
     <style>
-        /* General Styles */
         body {
             text-align: center;
             background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
             font-family: 'Arial', sans-serif;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin-top: 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .message {
-            font-size: 1.5em;
-            background: white;
             color: #ff4081;
+            overflow-x: hidden;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            position: relative;
+        }
+        /* Envelope */
+        .envelope-container {
+            position: relative;
+            cursor: pointer;
+        }
+        .envelope {
+            width: 150px;
+            height: 100px;
+            background: #d9534f;
+            position: relative;
+            border-radius: 10px 10px 5px 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: #c9302c;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            transition: transform 0.5s ease-in-out;
+        }
+        .message-box {
+            display: none;
+            background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            max-width: 80%;
-            text-align: center;
+            max-width: 90%;
+            text-align: left;
             position: relative;
-            z-index: 2;
+            z-index: 10;
         }
-
-        /* Slideshow */
+        /* Mobile-Friendly Slideshow */
         .slideshow {
             margin-top: 20px;
-            width: 320px;
-            height: 220px;
+            width: 350px; /* Mobile-friendly */
+            height: 250px; /* Mobile-friendly */
             overflow: hidden;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             position: relative;
-            z-index: 2;
         }
-
         .slideshow img {
             width: 100%;
             height: 100%;
@@ -60,27 +74,22 @@
             transition: opacity 1s ease-in-out;
             border-radius: 10px;
         }
-
         .slideshow img.active {
             opacity: 1;
         }
-
-        /* Floating Hearts (Now Appear IN FRONT) */
+        /* Floating Hearts Animation */
         @keyframes hearts {
-            from { transform: translateY(0) scale(1); opacity: 1; }
-            to { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(-100vh); opacity: 0; }
         }
-
         .heart {
-            position: fixed;
-            bottom: -20px;
-            width: 25px;
-            height: 25px;
-            background: rgba(255, 0, 0, 0.8);
+            position: absolute;
+            bottom: 0;
+            width: 20px;
+            height: 20px;
+            background: red;
             clip-path: polygon(50% 0%, 100% 40%, 80% 100%, 50% 80%, 20% 100%, 0% 40%);
             animation: hearts 5s linear infinite;
-            z-index: 1000; /* Now always in front */
-            pointer-events: none;
         }
     </style>
 </head>
@@ -92,14 +101,21 @@
         Your browser does not support the audio element.
     </audio>
 
-    <!-- Message Box -->
-    <h1>Happy Monthsary, My Love! ❤️</h1>
-    <div class="message">You make every day special. I love you forever! 💖</div>
+    <!-- Envelope -->
+    <div class="envelope-container" onclick="openLetter()">
+        <div class="envelope">
+            <div class="flap"></div>
+        </div>
+        <p>Click the envelope to open your surprise! 💌</p>
+    </div>
 
-    <!-- Slideshow -->
-   <div class="slideshow">
-           
-            <img src="photo5.jpg" alt="Memorable Moment" class="active">
+    <!-- Message Box -->
+    <div class="message-box" id="messageBox">
+        <h1>Happy Monthsary, My Love! ❤️</h1>
+        <div class="message">You make every day special. I love you forever! 💖</div>
+
+        <!-- Mobile-Friendly Slideshow -->
+                   <img src="photo5.jpg" alt="Memorable Moment" class="active">
             <img src="photo6.jpg" alt="Memorable Moment">
             <img src="photo7.jpg" alt="Memorable Moment">
             <img src="photo8.jpg" alt="Memorable Moment">
@@ -115,19 +131,27 @@
         <p>Babi, I know we still have a lot to go through and experience together, but we must always stay strong. Did you hear what Ate said earlier about whether you'd be okay with us living here in the future? They know how sure I am about you, and that you are the one I want to spend my life with. Hihihi. I love you so much, more than words can say.</p>
         <p>Always take care of yourself, no matter where you go or what you do. I will always be here, supporting you in everything. I will love you endlessly, only you, until my last breath. I won’t even mention all our past moments together because I am more focused on our future—the many more monthsaries and anniversaries ahead.</p>
         <p>So here’s to you, my love—my spouse, my darling, my lady, my one and only favorite person, and lastly, my Shiro. Happy, happy 3rd Monthsary of Love! 💖😚</p>
+        </div>
     </div>
 
     <script>
-        // Play Music
-        let audio = document.getElementById('bgMusic');
-        let savedTime = localStorage.getItem('musicTime');
-        if (savedTime) {
-            audio.currentTime = savedTime;
-        }
-        audio.play();
+        // Open Letter Function
+        function openLetter() {
+            document.body.classList.add('show-message');
+            document.getElementById('messageBox').style.display = 'block';
 
-        // Save music time before page reload
+            // Start playing music when opening the letter
+            let audio = document.getElementById('bgMusic');
+            let savedTime = localStorage.getItem('musicTime');
+            if (savedTime) {
+                audio.currentTime = savedTime;
+            }
+            audio.play();
+        }
+
+        // Save music time before reloading the page
         window.addEventListener('beforeunload', function() {
+            let audio = document.getElementById('bgMusic');
             localStorage.setItem('musicTime', audio.currentTime);
         });
 
@@ -144,7 +168,7 @@
         setInterval(showNextImage, 3000);
         showNextImage();
 
-        // Floating Hearts (Always in Front)
+        // Create Floating Hearts
         function createHeart() {
             let heart = document.createElement('div');
             heart.classList.add('heart');

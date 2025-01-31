@@ -21,32 +21,34 @@
             font-size: 2.5em;
             margin-top: 20px;
             position: relative;
-            z-index: 2;
+            z-index: 5; /* Always on top */
         }
 
         .message {
-            font-size: 1.5em;
+            font-size: 1.2em;
             background: white;
             color: #ff4081;
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            max-width: 80%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            display: inline-block;
             text-align: center;
             position: relative;
-            z-index: 2;
+            z-index: 5;
         }
 
         /* Slideshow */
         .slideshow {
             margin-top: 20px;
-            width: 320px;
-            height: 220px;
+            width: 90%;
+            max-width: 300px;
+            height: 200px;
             overflow: hidden;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             position: relative;
-            z-index: 2;
+            z-index: 5;
         }
 
         .slideshow img {
@@ -65,7 +67,7 @@
             opacity: 1;
         }
 
-        /* Floating Hearts (Now Appear IN FRONT) */
+        /* Floating Hearts (ALWAYS IN FRONT) */
         @keyframes hearts {
             from { transform: translateY(0) scale(1); opacity: 1; }
             to { transform: translateY(-100vh) scale(1.5); opacity: 0; }
@@ -76,10 +78,10 @@
             bottom: -20px;
             width: 25px;
             height: 25px;
-            background: rgba(255, 0, 0, 0.8);
+            background: rgba(255, 0, 0, 0.9);
             clip-path: polygon(50% 0%, 100% 40%, 80% 100%, 50% 80%, 20% 100%, 0% 40%);
-            animation: hearts 5s linear infinite;
-            z-index: 1000; /* Now always in front */
+            animation: hearts 6s linear infinite;
+            z-index: 1000; /* ON TOP OF EVERYTHING */
             pointer-events: none;
         }
     </style>
@@ -97,7 +99,7 @@
     <div class="message">You make every day special. I love you forever! 💖</div>
 
     <!-- Slideshow -->
-   <div class="slideshow">
+    <div class="slideshow">
            
             <img src="photo5.jpg" alt="Memorable Moment" class="active">
             <img src="photo6.jpg" alt="Memorable Moment">
@@ -118,7 +120,7 @@
     </div>
 
     <script>
-        // Play Music
+        // Play Music Without Restarting
         let audio = document.getElementById('bgMusic');
         let savedTime = localStorage.getItem('musicTime');
         if (savedTime) {
@@ -144,16 +146,16 @@
         setInterval(showNextImage, 3000);
         showNextImage();
 
-        // Floating Hearts (Always in Front)
+        // Floating Hearts (ALWAYS IN FRONT)
         function createHeart() {
             let heart = document.createElement('div');
             heart.classList.add('heart');
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDuration = Math.random() * 2 + 3 + 's';
             document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
+            setTimeout(() => heart.remove(), 6000);
         }
-        setInterval(createHeart, 300);
+        setInterval(createHeart, 200);
     </script>
 
 </body>
